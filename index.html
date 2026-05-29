@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CiclopeCMS — Gestión de normas legales</title>
+  <meta name="description" content="El CMS diseñado para normas legales. Workflow de aprobación, importación desde PDF, control de versiones y portal público con búsqueda inteligente." />
+  <meta property="og:title" content="CiclopeCMS — Gestión de normas legales" />
+  <meta property="og:description" content="Redactá, revisá, publicá y buscá normas con un workflow profesional. Importación desde PDF, control de versiones y portal público incluidos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ciclopecms.com" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23065f46'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white' font-family='sans-serif' font-weight='bold'>C</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-900: #064e3b;
+      --green-800: #065f46;
+      --green-700: #047857;
+      --green-600: #059669;
+      --green-400: #34d399;
+      --green-200: #a7f3d0;
+      --green-100: #d1fae5;
+      --green-50:  #ecfdf5;
+      --gray-900: #111827;
+      --gray-800: #1f2937;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-400: #9ca3af;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --gray-50:  #f9fafb;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--green-800);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--green-400); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav ul a {
+      color: var(--green-200);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--white);
+      color: var(--green-800);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--green-100); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green-700);
+      padding: 88px 40px 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      color: var(--green-200);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-400);
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      max-width: 620px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green-400);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--green-200);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--green-800);
+      border: none;
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .1s;
+    }
+    .btn-primary:hover { background: var(--green-100); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--green-800);
+      padding: 28px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat strong { display: block; font-size: 26px; font-weight: 700; color: var(--white); }
+    .stat span { font-size: 13px; color: var(--green-400); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 72px 40px; }
+
+    .section-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--gray-500);
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--white); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 24px 22px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      border-color: var(--green-600);
+      box-shadow: 0 4px 16px rgba(5,150,105,0.08);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--green-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ── WORKFLOW ── */
+    .workflow-section { background: var(--gray-50); }
+
+    .workflow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .wf-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 20px;
+    }
+
+    .wf-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all .2s;
+    }
+    .wf-step.active .wf-dot {
+      background: var(--green-600);
+      border-color: var(--green-600);
+      font-size: 18px;
+    }
+
+    .wf-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+    .wf-step.active .wf-label { color: var(--green-700); font-weight: 600; }
+
+    .wf-arrow {
+      color: var(--gray-300);
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .wf-roles {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .wf-role {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wf-role-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-500);
+    }
+
+    /* ── PORTAL PUBLICO ── */
+    .portal-section {
+      background: var(--green-800);
+      padding: 72px 40px;
+      text-align: center;
+    }
+    .portal-section .section-label { color: var(--green-400); }
+    .portal-section .section-title { color: var(--white); }
+    .portal-section .section-sub { color: var(--green-200); }
+
+    .portal-features {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .portal-feat {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 20px 24px;
+      flex: 1;
+      min-width: 180px;
+      text-align: left;
+    }
+    .portal-feat h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+    .portal-feat p { font-size: 13px; color: var(--green-200); line-height: 1.5; }
+
+    /* ── PARA QUIEN ── */
+    .clients-section { background: var(--white); }
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .client-chip {
+      background: var(--green-50);
+      border: 1px solid var(--green-100);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green-800);
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-200);
+      padding: 72px 40px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      color: var(--gray-500);
+      font-size: 16px;
+      margin-bottom: 36px;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-green {
+      background: var(--green-700);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .1s;
+    }
+    .btn-green:hover { background: var(--green-800); transform: translateY(-1px); }
+    .btn-mail {
+      background: var(--white);
+      color: var(--gray-700);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color .2s;
+    }
+    .btn-mail:hover { border-color: var(--green-600); color: var(--green-700); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-900);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--green-400); }
+    footer p {
+      font-size: 13px;
+      color: var(--green-400);
+      opacity: .7;
+    }
+    footer a {
+      color: var(--green-400);
+      text-decoration: none;
+      font-size: 13px;
+      opacity: .8;
+      transition: opacity .2s;
+    }
+    footer a:hover { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      nav ul { display: none; }
+      .hero { padding: 60px 24px 52px; }
+      .stats { gap: 32px; padding: 24px 20px; }
+      section { padding: 56px 24px; }
+      .portal-section { padding: 56px 24px; }
+      .cta-section { padding: 56px 24px; }
+      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+      .workflow-steps { gap: 0; }
+      .wf-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Ciclope<span>CMS</span></a>
+    <ul>
+      <li><a href="#features">Funcionalidades</a></li>
+      <li><a href="#workflow">Workflow</a></li>
+      <li><a href="#portal">Portal público</a></li>
+      <li><a href="mailto:jorge.r.gini@gmail.com">Contacto</a></li>
+      <li><a href="https://demo.ciclopecms.com" class="nav-cta" target="_blank">Ver demo →</a></li>
+    </ul>
+    <a href="https://demo.ciclopecms.com" class="nav-cta" style="display:none" id="mobile-cta" target="_blank">Demo →</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">Gestión normativa inteligente</div>
+    <h1>El CMS diseñado para <em>normas legales</em></h1>
+    <p>Redactá, revisá, publicá y buscá normas con un workflow profesional. Importación desde PDF, control de versiones y portal público con IA incluidos.</p>
+    <div class="hero-btns">
+      <a href="https://demo.ciclopecms.com" class="btn-primary" target="_blank">
+        Ver demo en vivo →
+      </a>
+      <a href="mailto:jorge.r.gini@gmail.com" class="btn-outline">
+        Contactar
+      </a>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <strong>6</strong>
+      <span>estados de workflow</span>
+    </div>
+    <div class="stat">
+      <strong>5</strong>
+      <span>roles de usuario</span>
+    </div>
+    <div class="stat">
+      <strong>100%</strong>
+      <span>integridad del contenido</span>
+    </div>
+    <div class="stat">
+      <strong>Multi</strong>
+      <span>tenant SaaS</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <p class="section-label">Funcionalidades</p>
+    <h2 class="section-title">Todo lo que necesitás en un solo sistema</h2>
+    <p class="section-sub">Construido para organismos del Estado, estudios jurídicos y equipos legales que gestionan grandes volúmenes de normativa.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Editor rich text profesional</h3>
+        <p>Editá normas con formato completo, imágenes, tablas y múltiples artículos por documento.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Workflow de aprobación</h3>
+        <p>Circuito completo borrador → revisión → aprobación → publicación con roles y permisos diferenciados.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Importación automática</h3>
+        <p>Importá normas desde el Diario Oficial, Word o PDF. El sistema las trocea en artículos automáticamente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Búsqueda avanzada</h3>
+        <p>Buscá por tipo, número, año o texto libre. Búsqueda inteligente sin acentos ni errores tipográficos.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕐</div>
+        <h3>Control de versiones</h3>
+        <p>Historial completo de cambios por artículo. Comparación lado a lado entre versiones con resaltado de diferencias.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Referencias normativas</h3>
+        <p>Vinculá normas entre sí: sustituciones, derogaciones y detección automática de citas al importar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <h3>Colecciones jerárquicas</h3>
+        <p>Organizá documentos en carpetas anidables. Drag &amp; drop para reorganizar la estructura.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Log de auditoría</h3>
+        <p>Registro completo de toda actividad con hash SHA-256 para verificación de integridad.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Notificaciones Telegram</h3>
+        <p>Alertas en tiempo real al equipo cuando un documento cambia de estado en el workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+  <section class="workflow-section" id="workflow">
+    <p class="section-label">Workflow editorial</p>
+    <h2 class="section-title">Cada norma recorre un circuito validado</h2>
+    <p class="section-sub">Desde la redacción hasta la publicación, cada paso tiene roles, permisos y trazabilidad completa.</p>
+
+    <div class="workflow-steps">
+      <div class="wf-step">
+        <div class="wf-dot">📝</div>
+        <div class="wf-label">Borrador</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-dot">👁️</div>
+        <div class="wf-label">Revisión</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-dot">✔️</div>
+        <div class="wf-label">Aprobado</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step active">
+        <div class="wf-dot">🌐</div>
+        <div class="wf-label">Publicado</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-dot">📦</div>
+        <div class="wf-label">Archivado</div>
+      </div>
+    </div>
+
+    <div class="wf-roles">
+      <div class="wf-role"><div class="wf-role-dot"></div> Editor</div>
+      <div class="wf-role"><div class="wf-role-dot"></div> Revisor</div>
+      <div class="wf-role"><div class="wf-role-dot"></div> Aprobador</div>
+      <div class="wf-role"><div class="wf-role-dot"></div> Lector</div>
+      <div class="wf-role"><div class="wf-role-dot"></div> Administrador</div>
+    </div>
+  </section>
+
+  <!-- PORTAL PUBLICO -->
+  <section class="portal-section" id="portal">
+    <p class="section-label">Portal público</p>
+    <h2 class="section-title">Búsqueda pública con inteligencia artificial</h2>
+    <p class="section-sub">CiclopeCMS incluye un portal de consulta pública donde los ciudadanos pueden buscar normativa vigente con lenguaje natural.</p>
+
+    <div class="portal-features">
+      <div class="portal-feat">
+        <h4>Búsqueda estándar</h4>
+        <p>Filtros por tipo, número, año y texto libre. Resultados con fragmentos resaltados.</p>
+      </div>
+      <div class="portal-feat">
+        <h4>Consultor IA Premium</h4>
+        <p>Hacé preguntas en lenguaje natural y el sistema responde citando artículos específicos.</p>
+      </div>
+      <div class="portal-feat">
+        <h4>Árbol temático</h4>
+        <p>Navegación por taxonomía de temas. Badges de novedades para normativa reciente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIEN -->
+  <section class="clients-section">
+    <p class="section-label">¿Para quién?</p>
+    <h2 class="section-title">Diseñado para quienes trabajan con normativa</h2>
+    <p class="section-sub">Cualquier organización que necesite gestionar, publicar y mantener actualizada su base normativa.</p>
+
+    <div class="clients-grid">
+      <div class="client-chip">🏛️ Organismos del Estado</div>
+      <div class="client-chip">⚖️ Entes reguladores</div>
+      <div class="client-chip">📋 Estudios jurídicos</div>
+      <div class="client-chip">🏙️ Municipios y provincias</div>
+      <div class="client-chip">🏢 Empresas con área legal</div>
+      <div class="client-chip">🤝 Cámaras y asociaciones</div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <h2>¿Querés verlo en acción?</h2>
+    <p>La demo está disponible ahora mismo, sin registro ni instalación.</p>
+    <div class="cta-btns">
+      <a href="https://demo.ciclopecms.com" class="btn-green" target="_blank">
+        Acceder a la demo →
+      </a>
+      <a href="mailto:jorge.r.gini@gmail.com" class="btn-mail">
+        ✉ jorge.r.gini@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Ciclope<span>CMS</span></a>
+    <p>© 2026 CiclopeCMS. Todos los derechos reservados.</p>
+    <a href="mailto:jorge.r.gini@gmail.com">jorge.r.gini@gmail.com</a>
+  </footer>
+
+  <script>
+    const mobileCta = document.getElementById('mobile-cta');
+    if (window.innerWidth <= 640) mobileCta.style.display = 'inline-flex';
+    window.addEventListener('resize', () => {
+      mobileCta.style.display = window.innerWidth <= 640 ? 'inline-flex' : 'none';
+    });
+  </script>
+
+</body>
+</html>
