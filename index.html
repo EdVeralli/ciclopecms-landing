@@ -782,8 +782,7 @@
 
 </section>
 
-
-    <!-- Sección de Características Técnicas -->
+<!-- Sección de Características Técnicas -->
     <section class="dark-mass-block" id="caracteristicas">
         <div class="section-container">
             <div class="section-header">
@@ -791,26 +790,40 @@
                 <p style="color: #94a3b8; font-size: 16px;">Estructura modular optimizada para cumplir con normatividad rigurosa y auditoría de datos.</p>
             </div>
             
+            <!-- Grilla real de tu archivo index.html corregida con tus 4 tarjetas en color #F54927 -->
             <div class="grid-arquitectura">
-                <div class="card-tech vibrant-glow">
-                    <h3 style="color: var(--accent-vibrant);">Importador AI Cíclope</h3>
-                    <p>Reconoce automáticamente las partes críticas del documento a importar y las convierte de forma transparente en recursos versionables.</p>
+                
+                <!-- Tarjeta 1: Importador AI -->
+                <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
+                    <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Importador AI Cíclope</h3>
+                    <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Reconoce automáticamente las partes críticas del documento a importar y las convierte de forma transparente en recursos versionables.</p>
                 </div>
-                <div class="card-tech">
-                    <h3 style="color: #ffffff;">Full-Text Search</h3>
-                    <p>Contenido indexado mediante <strong>Elasticsearch</strong>. Genere ventanas incrustables en portales externos con un solo click.</p>
+                
+                <!-- Tarjeta 2: Full-Text Search -->
+                <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
+                    <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Full-Text Search</h3>
+                    <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Contenido indexado mediante <strong>Elasticsearch</strong>. Genere ventanas incrustables en portales externos con un solo click.</p>
                 </div>
-                <div class="card-tech">
-                    <h3 style="color: #ffffff;">Seguridad Criptográfica</h3>
-                    <p>Cada registro está firmado digitalmente con <strong>SHA-256</strong> y encadenado al anterior, imposibilitando alteraciones retroactivas.</p>
+                
+                <!-- Tarjeta 3: Seguridad Criptográfica -->
+                <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
+                    <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Seguridad Criptográfica</h3>
+                    <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Cada registro está firmado digitalmente con <strong>SHA-256</strong> y encadenado al anterior, imposibilitando alteraciones retroactivas.</p>
                 </div>
-                <div class="card-tech vibrant-glow">
-                    <h3 style="color: var(--accent-vibrant);">Búsqueda Semántica IA</h3>
-                    <p>Exclusivo del plan Premium. Expande los términos de búsqueda usando IA para localizar conceptos jurídicos o técnicos complejos.</p>
+                
+                <!-- Tarjeta 4: Búsqueda Semántica IA -->
+                <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
+                    <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Búsqueda Semántica IA</h3>
+                    <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Exclusivo del plan Premium. Expande los términos de búsqueda usando IA para localizar conceptos jurídicos o técnicos complejos.</p>
                 </div>
+
             </div>
         </div>
-    </section>
+    </section>  
+
+
+
+
 
     <!-- Casos de Uso -->
   <section class="cases-section" id="casos" style="scroll-margin-top: 90px; height: auto !important; min-height: 80vh !important; padding: 80px 0 120px 0; overflow: visible !important; display: flex; flex-direction: column; justify-content: center; background-color: var(--secondary); color: #ffffff;">
@@ -1112,38 +1125,4 @@
 
     <!-- LÓGICA DE INTERACCIONES GLOBALES -->
     <script>
-        // Control Interactiva del Menú Móvil
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mainNav.classList.toggle('mobile-active');
-                    
-                    if (mainNav.classList.contains('mobile-active')) {
-                        menuToggle.innerHTML = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-dark)" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
-                    } else {
-                        menuToggle.innerHTML = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-dark)" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-                    }
-                });
-
-                document.querySelectorAll('#mainNav a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mainNav.classList.remove('mobile-active');
-                        menuToggle.innerHTML = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--text-dark)" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-                    });
-                });
-            }
-        });
-
-        // Utilidades del Formulario y Modales de Acceso Seguro
-        function togglePasswordVisibility(inputId, buttonEl) {
-            const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                buttonEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
-            } else {
-                input.type = "password";
-                buttonEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><
+        // Control Interactiva
