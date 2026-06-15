@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuerdo de Nivel de Servicio (SLA) - Cíclope CMS</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: #4a5450; 
+            background-color: #f0f7f5; 
+            padding: 40px 20px; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 12px; 
+            border: 1px solid #cfe2dd; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
+        }
+        h1 { 
+            color: #111827; 
+            font-size: 28px; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #2bb696; 
+            padding-bottom: 10px; 
+        }
+        h2 { 
+            color: #061815; 
+            font-size: 20px; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+        }
+        p, li { 
+            font-size: 15px; 
+            margin-bottom: 15px; 
+            text-align: justify; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            font-size: 14.5px; 
+        }
+        th, td { 
+            border: 1px solid #cfe2dd; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f0f7f5; 
+            color: #061815; 
+            font-weight: 700; 
+        }
+        .back-link { 
+            display: inline-block; 
+            margin-top: 30px; 
+            color: #2bb696; 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+        .back-link:hover { 
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acuerdo de Nivel de Servicio (SLA)</h1>
+        <p><strong>Última actualización:</strong> Junio 2026</p>
+        <p>Este Acuerdo de Nivel de Servicio ("SLA") define los compromisos de disponibilidad técnica de la infraestructura, redundancia de datos y tiempos de respuesta de soporte técnico provistos por <strong>Cíclope CMS</strong> a sus usuarios y clientes corporativos con planes vigentes.</p>
+
+        <h2>1. Compromiso de Disponibilidad (Uptime)</h2>
+        <p>Cíclope CMS garantiza que los entornos lógicos en la nube y los endpoints de publicación o incrustación mantendrán un porcentaje de disponibilidad operativa mensual de, al menos, el <strong>99.9%</strong>. Este compromiso se calcula las 24 horas del día, los 7 días de la semana, excluyendo únicamente las ventanas de mantenimiento técnico programado.</p>
+
+        <h2>2. Ventanas de Mantenimiento</h2>
+        <p>Las tareas de optimización de infraestructura, parches críticos de seguridad en bases de datos o despliegue de mejoras estructurales que requieran pausas breves del entorno se realizarán en horarios de baja densidad transaccional (típicamente entre las 02:00 y las 05:00 UTC). Dichas intervenciones serán notificadas al correo del administrador de la cuenta institucional con un mínimo de cuarenta y ocho (48) horas de anticipación.</p>
+
+        <h2>3. Matriz de Severidad e Incidentes de Soporte</h2>
+        <p>Los tiempos máximos para la primera respuesta técnica se estructuran rigurosamente de acuerdo al nivel de afectación real sobre la operación documental:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Severidad de Incidencia</th>
+                    <th>Definición Operativa</th>
+                    <th>Tiempo de Respuesta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Severidad 1 (Crítica)</strong></td>
+                    <td>La plataforma se encuentra completamente inaccesible o las funciones de validación SHA-256 bloquean el guardado.</td>
+                    <td>Menos de 2 Horas</td>
+                </tr>
+                <tr>
+                    <td><strong>Severidad 2 (Alta)</strong></td>
+                    <td>Mal funcionamiento de los motores de indexación Elasticsearch o del Importador Inteligente, pero el panel operativo sigue accesible.</td>
+                    <td>Menos de 6 Horas</td>
+                </tr>
+                <tr>
+                    <td><strong>Severidad 3 (Normal)</strong></td>
+                    <td>Consultas estéticas, ajustes menores en ventanas CSS, o asistencia sobre flujos de usuarios estándar.</td>
+                    <td>Menos de 24 Horas hábiles</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Respaldos (Backups) y Continuidad Operativa</h2>
+        <p>El sistema efectúa copias de seguridad completas y automatizadas de las bases de datos y de las estructuras modulares cada veinticuatro (24) horas, con retención cifrada distribuida en tres zonas geográficas distintas. Ante un evento catastrófico global, el tiempo objetivo de recuperación del servicio (RTO) se fija en un máximo de cuatro (4) horas.</p>
+
+        <a href="index.html" class="back-link">← Volver al Portal Principal</a>
+    </div>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuerdo de Nivel de Servicio (SLA) - Cíclope CMS</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: #4a5450; 
+            background-color: #f0f7f5; 
+            padding: 40px 20px; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 12px; 
+            border: 1px solid #cfe2dd; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
+        }
+        h1 { 
+            color: #111827; 
+            font-size: 28px; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #2bb696; 
+            padding-bottom: 10px; 
+        }
+        h2 { 
+            color: #061815; 
+            font-size: 20px; 
+            margin-top: 30px; 
+            margin-bottom: 15px; 
+        }
+        p, li { 
+            font-size: 15px; 
+            margin-bottom: 15px; 
+            text-align: justify; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            font-size: 14.5px; 
+        }
+        th, td { 
+            border: 1px solid #cfe2dd; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f0f7f5; 
+            color: #061815; 
+            font-weight: 700; 
+        }
+        .back-link { 
+            display: inline-block; 
+            margin-top: 30px; 
+            color: #2bb696; 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+        .back-link:hover { 
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acuerdo de Nivel de Servicio (SLA)</h1>
+        <p><strong>Última actualización:</strong> Junio 2026</p>
+        <p>Este Acuerdo de Nivel de Servicio ("SLA") define los compromisos de disponibilidad técnica de la infraestructura, redundancia de datos y tiempos de respuesta de soporte técnico provistos por <strong>Cíclope CMS</strong> a sus usuarios y clientes corporativos con planes vigentes.</p>
+
+        <h2>1. Compromiso de Disponibilidad (Uptime)</h2>
+        <p>Cíclope CMS garantiza que los entornos lógicos en la nube y los endpoints de publicación o incrustación mantendrán un porcentaje de disponibilidad operativa mensual de, al menos, el <strong>99.9%</strong>. Este compromiso se calcula las 24 horas del día, los 7 días de la semana, excluyendo únicamente las ventanas de mantenimiento técnico programado.</p>
+
+        <h2>2. Ventanas de Mantenimiento</h2>
+        <p>Las tareas de optimización de infraestructura, parches críticos de seguridad en bases de datos o despliegue de mejoras estructurales que requieran pausas breves del entorno se realizarán en horarios de baja densidad transaccional (típicamente entre las 02:00 y las 05:00 UTC). Dichas intervenciones serán notificadas al correo del administrador de la cuenta institucional con un mínimo de cuarenta y ocho (48) horas de anticipación.</p>
+
+        <h2>3. Matriz de Severidad e Incidentes de Soporte</h2>
+        <p>Los tiempos máximos para la primera respuesta técnica se estructuran rigurosamente de acuerdo al nivel de afectación real sobre la operación documental:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Severidad de Incidencia</th>
+                    <th>Definición Operativa</th>
+                    <th>Tiempo de Respuesta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Severidad 1 (Crítica)</strong></td>
+                    <td>La plataforma se encuentra completamente inaccesible o las funciones de validación SHA-256 bloquean el guardado.</td>
+                    <td>Menos de 2 Horas</td>
+                </tr>
+                <tr>
+                    <td><strong>Severidad 2 (Alta)</strong></td>
+                    <td>Mal funcionamiento de los motores de indexación Elasticsearch o del Importador Inteligente, pero el panel operativo sigue accesible.</td>
+                    <td>Menos de 6 Horas</td>
+                </tr>
+                <tr>
+                    <td><strong>Severidad 3 (Normal)</strong></td>
+                    <td>Consultas estéticas, ajustes menores en ventanas CSS, o asistencia sobre flujos de usuarios estándar.</td>
+                    <td>Menos de 24 Horas hábiles</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Respaldos (Backups) y Continuidad Operativa</h2>
+        <p>El sistema efectúa copias de seguridad completas y automatizadas de las bases de datos y de las estructuras modulares cada veinticuatro (24) horas, con retención cifrada distribuida en tres zonas geográficas distintas. Ante un evento catastrófico global, el tiempo objetivo de recuperación del servicio (RTO) se fija en un máximo de cuatro (4) horas.</p>
+
+        <a href="index.html" class="back-link">← Volver al Portal Principal</a>
+    </div>
+</body>
+</html>
