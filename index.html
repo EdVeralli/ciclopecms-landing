@@ -1001,6 +1001,7 @@
 				        <option value="+598">🇺🇾 +598 Uruguay</option>
 				        <option value="+58">🇻🇪 +58 Venezuela</option>
     				</select>
+                                <input type="tel" id="reg-phone" class="login-input" placeholder="Número de teléfono" style="flex:1;" required>
                             </div>
                         </div>
                         
@@ -1160,10 +1161,11 @@
     const nombre = document.getElementById('reg-name').value;
     const email = document.getElementById('reg-email').value;
     const password = document.getElementById('reg-password').value;
-
-    // Campos opcionales inicializados vacíos para evitar que el script se rompa
-    const compañia = "";
-    const mercado = "";
+    const empresa = document.getElementById('reg-company').value;
+    const mercado = document.getElementById('reg-market').value;
+    const prefijo = document.getElementById('reg-prefix').value;
+    const telInput = document.getElementById('reg-phone');
+    const telefono = (telInput && telInput.value) ? (prefijo + ' ' + telInput.value) : '';
 
     console.log("Intentando registrar a:", email, "a través de ruta relativa...");
 
@@ -1173,7 +1175,7 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nombre, email, password, compañia, mercado })
+        body: JSON.stringify({ nombre, email, password, empresa, mercado, telefono })
     })
     .then(response => {
         if (response.ok) {
