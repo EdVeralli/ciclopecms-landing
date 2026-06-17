@@ -449,10 +449,10 @@
             box-shadow: 0 8px 16px rgba(43,182,150,0.15);
         }
 
-        /* Formulario de Registro */
+        /* Formulario de Registro - ALTURA REDUCIDA PARA LAPTOPS */
         .register-section {
             background-color: var(--bg-white);
-            padding: 100px 20px;
+            padding: 40px 20px; /* Reducido de 100px para evitar scrolls excesivos */
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -462,21 +462,21 @@
             background: var(--bg-light);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 45px;
+            padding: 24px 35px; /* Compactado para ganar espacio vertical */
             box-shadow: 0 10px 30px rgba(6, 24, 21, 0.02);
         }
         .register-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 14px; /* Espaciado entre elementos reducido de 24px a 14px */
         }
-        @media(max-width: 600px) { .register-grid { grid-template-columns: 1fr; } }
+        @media(max-width: 600px) { .register-grid { grid-template-columns: 1fr; gap: 14px; } }
         .full-width { grid-column: span 2; }
         @media(max-width: 600px) { .full-width { grid-column: span 1; } }
 
         .select-market {
             width: 100%;
-            padding: 14px 16px;
+            padding: 11px 16px; /* Altura de campos ligeramente reducida */
             border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 15px;
@@ -497,7 +497,7 @@
         }
         .select-prefix {
             width: 150px;
-            padding: 14px 8px;
+            padding: 11px 8px;
             border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 14px;
@@ -550,18 +550,18 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
         .login-form-group {
-            margin-bottom: 22px;
+            margin-bottom: 12px; /* Ajustado sutilmente */
         }
         .login-form-group label {
             display: block;
             font-size: 14px;
             font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .login-input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 11px 16px; /* Ajustado para consistencia y menor espacio vertical */
             border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 15px;
@@ -580,7 +580,7 @@
             background-color: var(--accent);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 13px;
             border-radius: 8px;
             font-size: 15px;
             font-weight: 700;
@@ -720,7 +720,6 @@
 </head>
 <body>
 
-    <!-- CABECERA INTERACTIVA UNIFICADA -->
     <header>
         <div class="nav-container">
             <div class="logo-area">
@@ -747,7 +746,6 @@
         </div>
     </header>
 
-    <!-- SECCIÓN HERO CON COLUMNA GRÁFICA OPTIMIZADA -->
     <div class="hero-wrapper">
         <section class="hero">
             <div class="hero-text">
@@ -768,30 +766,24 @@
                 </div>
             </div>
             
-<!-- Columna Derecha: Imagen ARRIBA + Texto Publicitario Asimétrico (Con entrada elegante fija) -->
-        <div class="hero-graphic-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0px; height: auto; animation: fadeInUpModern 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; padding-left: 20px;">
+<div class="hero-graphic-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0px; height: auto; animation: fadeInUpModern 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; padding-left: 20px;">
             
-            <!-- Tu Imagen Original -->
             <img src="imagen_ciclope_recortada-Photoroom.png" alt="Ilustración Modular Cíclope" style="width: 100%; max-width: 100%; height: auto; max-height: 460px; object-fit: contain; margin-bottom: 0 !important; padding-bottom: 0 !important; display: block;">
             
-            <!-- Texto Publicitario - Mantiene los cuerpos chicos y el margen a la derecha -->
             <div style="display: flex; flex-direction: column; width: 100%; max-width: 460px; gap: 3px; margin-top: -35px; margin-left: auto; margin-right: 0; padding: 0 10px 10px 10px; box-sizing: border-box; position: relative; z-index: 2;">
                 
-                <!-- Renglón 1: Izquierda - Verde Menta Fuerte -->
                 <div style="display: flex; justify-content: flex-start; width: 100%;">
                     <span style="color: #10b981; font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.1; text-shadow: 0 2px 10px rgba(16, 185, 129, 0.15);">
                         ¿Qué esperan
                     </span>
                 </div>
                 
-                <!-- Renglón 2: Centro - Ocre Goma Guta -->
                 <div style="display: flex; justify-content: center; width: 100%; padding-left: 20px;">
                     <span style="color: #daa520; font-size: 24px; font-weight: 700; font-style: italic; letter-spacing: -0.2px; line-height: 1.1;">
                         los profesionales
                     </span>
                 </div>
                 
-                <!-- Renglón 3: Derecha - Verde Menta Fuerte -->
                 <div style="display: flex; justify-content: flex-end; width: 100%;">
                     <span style="color: #10b981; font-size: 34px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.1; white-space: nowrap; text-shadow: 0 2px 10px rgba(16, 185, 129, 0.15);">
                         en gestión documental?
@@ -804,36 +796,30 @@
 
 </section>
 
-<!-- Sección de Características Técnicas -->
-    <section class="dark-mass-block" id="caracteristicas">
+<section class="dark-mass-block" id="caracteristicas">
         <div class="section-container">
             <div class="section-header">
                 <h2>Potente Arquitectura en la Nube</h2>
                 <p style="color: #94a3b8; font-size: 16px;">Estructura modular optimizada para cumplir con normatividad rigurosa y auditoría de datos.</p>
             </div>
             
-            <!-- Grilla real de tu archivo index.html corregida con tus 4 tarjetas en color #F54927 -->
             <div class="grid-arquitectura">
                 
-                <!-- Tarjeta 1: Importador AI -->
                 <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
                     <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Importador AI Cíclope</h3>
                     <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Reconoce automáticamente las partes críticas del documento a importar y las convierte de forma transparente en recursos versionables.</p>
                 </div>
                 
-                <!-- Tarjeta 2: Full-Text Search -->
                 <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
                     <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Full-Text Search</h3>
                     <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Contenido indexado mediante <strong>Elasticsearch</strong>. Genere ventanas incrustables en portales externos con un solo click.</p>
                 </div>
                 
-                <!-- Tarjeta 3: Seguridad Criptográfica -->
                 <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
                     <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Seguridad Criptográfica</h3>
                     <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Cada registro está firmado digitalmente con <strong>SHA-256</strong> y encadenado al anterior, imposibilitando alteraciones retroactivas.</p>
                 </div>
                 
-                <!-- Tarjeta 4: Búsqueda Semántica IA -->
                 <div class="card-tech" style="background-color: #F54927; border: 1px solid #ff6e52; color: #ffffff; padding: 32px 24px; border-radius: 16px; box-shadow: 0 10px 25px rgba(245, 73, 39, 0.2); transition: transform 0.3s;">
                     <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 14px; font-weight: 700;">Búsqueda Semántica IA</h3>
                     <p style="color: #fce8e4; font-size: 14.5px; line-height: 1.5; margin: 0;">Exclusivo del plan Premium. Expande los términos de búsqueda usando IA para localizar conceptos jurídicos o técnicos complejos.</p>
@@ -843,12 +829,7 @@
         </div>
     </section>  
 
-
-
-
-
-    <!-- Casos de Uso -->
-  <section class="cases-section" id="casos" style="scroll-margin-top: 90px; height: auto !important; min-height: 80vh !important; padding: 80px 0 120px 0; overflow: visible !important; display: flex; flex-direction: column; justify-content: center; background-color: var(--secondary); color: #ffffff;">
+    <section class="cases-section" id="casos" style="scroll-margin-top: 90px; height: auto !important; min-height: 80vh !important; padding: 80px 0 120px 0; overflow: visible !important; display: flex; flex-direction: column; justify-content: center; background-color: var(--secondary); color: #ffffff;">
         <div class="section-container">
             <div class="section-header">
                 <h2 style="color: #ffffff; font-size: 36px; font-weight: 800; margin-bottom: 16px;">Casos de Uso e Integración de Mercados</h2>
@@ -868,20 +849,16 @@
         </div>
     </section>
 
-<!-- Sección de Planes y Precios -->
 <section class="pricing-section" id="precios" style="scroll-margin-top: 90px; height: auto !important; min-height: auto !important; padding: 80px 0 40px 0; overflow: visible !important;">
     <div class="section-container" style="height: auto !important; max-height: none !important; overflow: visible !important; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
         
-        <!-- Contenedor del Título: Bajado con margen superior balanceado -->
         <div class="section-header" style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
             <h2>Seleccione el Plan a su Medida</h2>
             <p style="color: #e2f1ed; margin: 5px 0 0 0;">Inicie sin costo y escale sus capacidades de integración y automatización.</p>
         </div>
         
-        <!-- pricing-grid: En una sola línea horizontal y compactada en altura -->
         <div class="pricing-grid" style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: stretch; gap: 15px; width: 100%; height: auto !important; overflow: visible !important;">
             
-            <!-- Plan Free -->
             <div class="price-card" style="flex: 1 1 0%; min-width: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box;">
                 <div class="price-header" style="margin-bottom: 10px;">
                     <h3 style="margin: 0; font-size: 20px; line-height: 1.1;">Plan Free</h3>
@@ -896,11 +873,10 @@
                 <a href="#registro" class="btn-price" style="margin-top: auto; padding: 10px; font-size: 14px;">Registrarse Gratis</a>
             </div>
 
-            <!-- Nivel 1 -->
             <div class="price-card" style="flex: 1 1 0%; min-width: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box;">
                 <div class="price-header" style="margin-bottom: 10px;">
                     <h3 style="margin: 0; font-size: 20px; line-height: 1.1;">Nivel 1</h3>
-                    <div class="price" style="font-size: 36px; font-weight: 800; margin: 5px 0; line-height: 1;">$49<span style="font-size: 14px; font-weight: 400;">/mes</span></div>
+                    <div class="price" style="font-size: 36px; font-weight: 800; margin: 5px 0; line-height: 1;">$<span style="font-size: 14px; font-weight: 400;">/mes</span></div>
                     <p style="margin: 0; font-size: 13px; line-height: 1.3; color: #94a3b8;">Para equipos pequeños encargados de normativas.</p>
                 </div>
                 <ul class="price-features" style="margin: 10px 0; padding: 0; font-size: 13px; line-height: 1.4;">
@@ -911,7 +887,6 @@
                 <a href="#registro" class="btn-price" style="margin-top: auto; padding: 10px; font-size: 14px;">Adquirir Nivel 1</a>
             </div>
 
-            <!-- Nivel 2 -->
             <div class="price-card featured" style="flex: 1 1 0%; min-width: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box;">
                 <div class="ribbon" style="font-size: 10px; padding: 2px 10px;">RECOMENDADO</div>
                 <div class="price-header" style="margin-bottom: 10px;">
@@ -927,7 +902,6 @@
                 <a href="#registro" class="btn-price" style="margin-top: auto; padding: 10px; font-size: 14px;">Adquirir Nivel 2</a>
             </div>
 
-            <!-- Nivel 3 -->
             <div class="price-card" style="flex: 1 1 0%; min-width: 200px; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box;">
                 <div class="price-header" style="margin-bottom: 10px;">
                     <h3 style="margin: 0; font-size: 20px; line-height: 1.1;">Nivel 3</h3>
@@ -946,7 +920,6 @@
     </div>
 </section>
 
-    <!-- Flujo de Onboarding -->
     <section class="steps-section">
         <div class="section-container">
             <div class="section-header">
@@ -978,10 +951,9 @@
         </div>
     </section>
 
-    <!-- Formulario Modular de Alta -->
     <section class="register-section" id="registro">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header" style="margin-bottom: 25px;">
                 <h2>Comience su Despliegue de Inmediato</h2>
                 <p>Complete los datos para obtener su cuenta de Cíclope CMS.</p>
             </div>
@@ -1046,7 +1018,7 @@
                             </select>
                         </div>
                         
-                        <div class="login-form-group full-width">
+                        <div class="login-form-group full-width" style="margin-bottom: 5px;">
                             <label for="reg-password">Clave de Acceso</label>
                             <div class="password-wrapper">
                                 <input 
@@ -1064,7 +1036,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" id="btnSignupSubmit" class="btn-login" style="margin-top: 20px; background-color: var(--secondary); color: var(--accent-vibrant); border: 1px solid var(--accent-vibrant);">Crear Cuenta Institucional Gratuita</button>
+                    <button type="submit" id="btnSignupSubmit" class="btn-login" style="margin-top: 15px; background-color: var(--secondary); color: var(--accent-vibrant); border: 1px solid var(--accent-vibrant);">Crear Cuenta Institucional Gratuita</button>
                 </form>
             </div>
         </div>
@@ -1097,7 +1069,6 @@
             </div>
     </div>
 </section>
-    <!-- Ventana Modal de Recuperación -->
     <div class="modal-overlay" id="recoveryModal">
         <div class="modal-content" id="modalDynamicBody">
             <button class="modal-close" onclick="closeRecoveryModal()">&times;</button>
@@ -1114,7 +1085,6 @@
         </div>
     </div>
 
-    <!-- PIE DE PÁGINA CORPORATIVO LEGAL INTEGRADO -->
     <footer style="background-color: var(--text-dark, #111827); padding: 40px 20px; text-align: center; color: #94a3b8;">
         <div class="footer-links" style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: center;">
             <a href="privacidad.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s;">Política de Privacidad (GDPR)</a>
@@ -1128,7 +1098,6 @@
         </p>
     </footer>
 
-    <!-- BOTÓN VOLVER ARRIBA FLOTANTE NATIVO -->
     <a href="#" class="scroll-top-btn" title="Volver arriba" aria-label="Volver arriba">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -1136,7 +1105,6 @@
         </svg>
     </a>
 
-    <!-- LÓGICA DE INTERACCIONES GLOBALES -->
     <script>
         // Control Interactiva del Menú Móvil
         document.addEventListener('DOMContentLoaded', function() {
@@ -1185,10 +1153,31 @@
             closeRecoveryModal();
         }
 
-        function handleSignup(event) {
-            event.preventDefault();
-            const emailEl = document.getElementById('reg-email');
-            const email = emailEl ? emailEl.value : '';
+      function handleSignup(event) {
+    event.preventDefault(); // Frena el recargo de página estándar
+    
+    // 1. Capturamos los campos esenciales que tienen ID en tu HTML
+    const nombre = document.getElementById('reg-name').value;
+    const email = document.getElementById('reg-email').value;
+    const password = document.getElementById('reg-password').value;
+
+    // Campos opcionales inicializados vacíos para evitar que el script se rompa
+    const compañia = "";
+    const mercado = "";
+
+    console.log("Intentando registrar a:", email, "a través de ruta relativa...");
+
+    // 2. Mandamos los datos usando la RUTA RELATIVA (sin http://localhost:3000)
+    fetch('/registro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, email, password, compañia, mercado })
+    })
+    .then(response => {
+        if (response.ok) {
+            // 3. Si el servidor procesó el guardado, mostramos el éxito en pantalla
             const fc = document.getElementById('formContainer');
             if (fc) {
                 fc.innerHTML = `
@@ -1197,7 +1186,15 @@
                     <p>Hemos enviado un entorno de verificación a: <strong>${email}</strong></p>
                 </div>`;
             }
+        } else {
+            alert("El servidor rechazó los datos. Revisa si usuarios.json está en la carpeta Server.");
         }
+    })
+    .catch(err => {
+        console.error("Error de comunicación:", err);
+        alert("Error de conexión. Asegúrate de actualizar la página con Ctrl + F5.");
+    });
+}
     </script>
 </body>
 </html>
