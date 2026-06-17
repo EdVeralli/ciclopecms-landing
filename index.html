@@ -740,7 +740,7 @@
                     <li><a href="#caracteristicas">Características</a></li>
                     <li><a href="#casos">Casos de Uso</a></li>
                     <li><a href="#precios">Precios</a></li>
-                    <li><a href="https://demo.ciclopecms.com/" target="_blank" rel="noopener">Iniciar Sesión</a></li>
+                    <li><a href="#iniciar">Iniciar Sesión</a></li>
                     <li><a href="#registro" class="btn-primary" style="background-color: var(--secondary); color: var(--accent-vibrant) !important; border: 1px solid var(--accent-vibrant);">Prueba Gratuita</a></li>
                 </ul>
             </nav>
@@ -1074,36 +1074,27 @@
     <div class="section-container" style="height: auto !important; max-height: none !important; overflow: visible !important; padding: 0 20px; box-sizing: border-box;">
         
         <div class="section-header" style="text-align: center; margin-top: 15px; margin-bottom: 25px;">
-            <h2 style="color: var(--text-dark, #111827); margin: 0; font-size: 32px; line-height: 1.2;">Acceso al Entorno Seguro</h2>
-            <p style="color: var(--text-main, #4a5450); margin: 5px 0 0 0; font-size: 15px;">Ingrese su Usuario y Clave.</p>
+            <h2 style="color: var(--text-dark, #111827); margin: 0; font-size: 32px; line-height: 1.2;">Probá las Demos en Vivo</h2>
+            <p style="color: var(--text-main, #4a5450); margin: 5px 0 0 0; font-size: 15px;">Elegí el entorno que querés explorar. Cada demo abre su propio inicio de sesión.</p>
         </div>
         
-        <div class="login-card" style="margin-top: 0; padding-top: 20px; padding-bottom: 20px;">
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Iniciando entorno seguro...');">
-                
-                <div class="login-form-group" style="margin-bottom: 15px;">
-                    <label for="email" style="margin-bottom: 6px; display: block; color: var(--text-dark, #111827);">Correo Electrónico Institucional</label>
-                    <input type="email" id="email" class="login-input" placeholder="nombre@empresa.com" required>
+        <div style="display:flex; gap:24px; flex-wrap:wrap; justify-content:center; max-width:780px; margin:0 auto;">
+
+                <div class="login-card" style="flex:1 1 320px; max-width:360px; text-align:center; padding:36px 30px;">
+                    <div style="font-size:42px; line-height:1; margin-bottom:14px;">&#9878;&#65039;</div>
+                    <h3 style="color:var(--text-dark); margin:0 0 8px; font-size:21px;">Demo Legal (DIAN)</h3>
+                    <p style="color:var(--text-main); font-size:14px; margin:0 0 24px; min-height:42px;">Gestión de normas legales y portal público de consulta.</p>
+                    <a href="https://demo.ciclopecms.com/" target="_blank" rel="noopener" class="btn-login" style="display:block; text-decoration:none; text-align:center;">Ingresar &#8594;</a>
                 </div>
-                
-                <div class="login-form-group" style="margin-bottom: 15px;">
-                    <label for="password" style="margin-bottom: 6px; display: block; color: var(--text-dark, #111827);">Contraseña</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="password" class="login-input" placeholder="••••••••" required>
-                        <button type="button" class="btn-toggle-password" onclick="togglePasswordVisibility('password', this)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </button>
-                    </div>
+
+                <div class="login-card" style="flex:1 1 320px; max-width:360px; text-align:center; padding:36px 30px;">
+                    <div style="font-size:42px; line-height:1; margin-bottom:14px;">&#127970;</div>
+                    <h3 style="color:var(--text-dark); margin:0 0 8px; font-size:21px;">Demo SaaS</h3>
+                    <p style="color:var(--text-main); font-size:14px; margin:0 0 24px; min-height:42px;">Versión multi-tenant, configurable por cada organización.</p>
+                    <a href="https://saas.ciclopecms.com/" target="_blank" rel="noopener" class="btn-login" style="display:block; text-decoration:none; text-align:center;">Ingresar &#8594;</a>
                 </div>
-                
-                <div class="login-meta" style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:20px; color: var(--text-dark, #111827);">
-                    <label style="display:flex; gap:6px; cursor:pointer;"><input type="checkbox"> Recordar sesión</label>
-                    <span style="color:var(--accent); cursor:pointer; font-weight:600;" onclick="openRecoveryModal()">¿Olvidó su contraseña?</span>
-                </div>
-                
-                <button type="submit" class="btn-login" style="padding: 12px; font-size: 15px;">Iniciar Sesión</button>
-            </form>
-        </div>
+
+            </div>
     </div>
 </section>
     <!-- Ventana Modal de Recuperación -->
