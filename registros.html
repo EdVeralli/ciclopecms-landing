@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cíclope · Registros de la home</title>
+<style>
+  :root { --green:#065f46; --accent:#2bb696; --bg:#f0f7f5; --border:#cfe2dd; --dark:#111827; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin:0; background:var(--bg); color:var(--dark); }
+  header { background:var(--green); color:#fff; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  header h1 { font-size:18px; margin:0; font-weight:700; }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px; }
+  .card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:24px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
+  .login { max-width:360px; margin:60px auto; }
+  label { display:block; font-size:13px; font-weight:600; margin:12px 0 6px; }
+  input { width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:8px; font-size:15px; outline:none; }
+  input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(43,182,150,.15); }
+  button { background:var(--accent); color:#fff; border:none; padding:11px 18px; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; }
+  button:hover { background:#22947a; }
+  button.ghost { background:#fff; color:var(--green); border:1px solid var(--green); }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); }
+  th { background:#eef6f4; font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:#456; }
+  tr:hover td { background:#f8fbfa; }
+  .muted { color:#6b7280; font-size:13px; }
+  .err { color:#b91c1c; font-size:13px; margin-top:10px; }
+  .count { font-weight:700; color:var(--green); }
+  .empty { text-align:center; color:#9ca3af; padding:40px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cíclope · Registros de la home</h1>
+  <div id="hdrActions" style="display:none;">
+    <button class="ghost" onclick="cargar()">Refrescar</button>
+    <button class="ghost" onclick="salir()">Salir</button>
+  </div>
+</header>
+<div class="wrap">
+  <div id="loginCard" class="card login">
+    <h2 style="margin:0 0 6px; font-size:20px;">Acceso administrador</h2>
+    <p class="muted" style="margin:0;">Ingresá con tu usuario admin del CMS.</p>
+    <form id="loginForm">
+      <label for="u">Usuario</label>
+      <input id="u" autocomplete="username" required>
+      <label for="p">Contraseña</label>
+      <input id="p" type="password" autocomplete="current-password" required>
+      <div style="margin-top:16px;"><button type="submit">Ingresar</button></div>
+      <div id="loginErr" class="err"></div>
+    </form>
+  </div>
+  <div id="tableCard" class="card" style="display:none;">
+    <p class="muted" style="margin:0 0 14px;">Total de registros: <span id="total" class="count">0</span></p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Fecha</th><th>Nombre</th><th>Email</th><th>Empresa</th><th>Mercado</th><th>Teléfono</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div id="empty" class="empty" style="display:none;">Todavía no hay registros.</div>
+    <div id="tableErr" class="err"></div>
+  </div>
+</div>
+<script>
+  const API = "https://demo.ciclopecms.com/api";
+  let token = null;
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = document.getElementById('loginErr'); err.textContent = '';
+    const body = new URLSearchParams({
+      username: document.getElementById('u').value,
+      password: document.getElementById('p').value,
+    });
+    try {
+      const r = await fetch(API + '/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      if (!r.ok) { err.textContent = 'Usuario o contraseña incorrectos.'; return; }
+      const data = await r.json();
+      token = data.access_token;
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('tableCard').style.display = 'block';
+      document.getElementById('hdrActions').style.display = 'flex';
+      cargar();
+    } catch (_) { err.textContent = 'Error de conexión.'; }
+  });
+  async function cargar() {
+    const err = document.getElementById('tableErr'); err.textContent = '';
+    try {
+      const r = await fetch(API + '/v1/public/registros', {
+        headers: { 'Authorization': 'Bearer ' + token },
+      });
+      if (r.status === 401 || r.status === 403) { err.textContent = 'Sesión vencida o sin permisos. Volvé a entrar.'; return; }
+      if (!r.ok) { err.textContent = 'Error al cargar (' + r.status + ').'; return; }
+      const rows = await r.json();
+      document.getElementById('total').textContent = rows.length;
+      const tb = document.getElementById('tbody'); tb.innerHTML = '';
+      document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
+      for (const x of rows) {
+        const fecha = x.fecha ? new Date(x.fecha).toLocaleString('es-AR') : '';
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td>' + x.id + '</td>' +
+          '<td>' + esc(fecha) + '</td>' +
+          '<td>' + esc(x.nombre) + '</td>' +
+          '<td>' + esc(x.email) + '</td>' +
+          '<td>' + esc(x.empresa) + '</td>' +
+          '<td>' + esc(x.mercado) + '</td>' +
+          '<td>' + esc(x.telefono) + '</td>';
+        tb.appendChild(tr);
+      }
+    } catch (_) { err.textContent = 'Error de conexión.'; }
+  }
+  function salir() {
+    token = null;
+    document.getElementById('tableCard').style.display = 'none';
+    document.getElementById('hdrActions').style.display = 'none';
+    document.getElementById('loginCard').style.display = 'block';
+    document.getElementById('p').value = '';
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>
