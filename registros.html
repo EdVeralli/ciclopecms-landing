@@ -55,7 +55,7 @@
     <div style="overflow-x:auto;">
       <table>
         <thead>
-          <tr><th>#</th><th>Fecha</th><th>Nombre</th><th>Email</th><th>Empresa</th><th>Mercado</th><th>Teléfono</th></tr>
+          <tr><th>#</th><th>Fecha</th><th>Nombre</th><th>Email</th><th>Empresa</th><th>Mercado</th><th>Teléfono</th><th>Verificado</th></tr>
         </thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -111,7 +111,8 @@
           '<td>' + esc(x.email) + '</td>' +
           '<td>' + esc(x.empresa) + '</td>' +
           '<td>' + esc(x.mercado) + '</td>' +
-          '<td>' + esc(x.telefono) + '</td>';
+          '<td>' + esc(x.telefono) + '</td>' +
+          '<td>' + (x.verificado ? '✔' : '<span style="color:#b45309;">pendiente</span>') + '</td>';
         tb.appendChild(tr);
       }
     } catch (_) { err.textContent = 'Error de conexión.'; }
