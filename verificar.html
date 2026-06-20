@@ -30,9 +30,9 @@
   const card = document.getElementById('card');
   function ok(email){
     icon.textContent = '✅';
-    titulo.textContent = '¡Email verificado!';
-    msg.innerHTML = 'Confirmaste <b>' + (email||'') + '</b>. Ya podés cerrar esta página.';
-    card.insertAdjacentHTML('beforeend', '<a class="btn" href="https://ciclopecms.com/">Volver al inicio</a>');
+    titulo.textContent = '¡Tu cuenta está activa!';
+    msg.innerHTML = 'Confirmaste <b>' + (email||'') + '</b>. Tu cuenta ya quedó creada — te enviamos un mail con los datos de acceso.';
+    card.insertAdjacentHTML('beforeend', '<a class="btn" href="https://saas.ciclopecms.com/">Ingresar a Cíclope</a>');
   }
   function fail(t){
     icon.textContent = '⚠️';
