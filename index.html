@@ -1187,6 +1187,7 @@
                     <h3 style="color: var(--secondary); margin-bottom:10px;">¡Registro Exitoso!</h3>
                     <p>Hemos enviado un entorno de verificación a: <strong>${email}</strong></p>
                 </div>`;
+                fc.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         } else {
             alert("El servidor rechazó los datos. Revisa si usuarios.json está en la carpeta Server.");
