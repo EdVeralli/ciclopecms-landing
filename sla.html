@@ -1,237 +1,217 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acuerdo de Nivel de Servicio (SLA) - Cíclope CMS</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            line-height: 1.6; 
-            color: #4a5450; 
-            background-color: #f0f7f5; 
-            padding: 40px 20px; 
-            margin: 0;
-        }
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            background: #ffffff; 
-            padding: 40px; 
-            border-radius: 12px; 
-            border: 1px solid #cfe2dd; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
-        }
-        h1 { 
-            color: #111827; 
-            font-size: 28px; 
-            margin-bottom: 20px; 
-            border-bottom: 2px solid #2bb696; 
-            padding-bottom: 10px; 
-        }
-        h2 { 
-            color: #061815; 
-            font-size: 20px; 
-            margin-top: 30px; 
-            margin-bottom: 15px; 
-        }
-        p, li { 
-            font-size: 15px; 
-            margin-bottom: 15px; 
-            text-align: justify; 
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin: 20px 0; 
-            font-size: 14.5px; 
-        }
-        th, td { 
-            border: 1px solid #cfe2dd; 
-            padding: 12px; 
-            text-align: left; 
-        }
-        th { 
-            background-color: #f0f7f5; 
-            color: #061815; 
-            font-weight: 700; 
-        }
-        .back-link { 
-            display: inline-block; 
-            margin-top: 30px; 
-            color: #2bb696; 
-            text-decoration: none; 
-            font-weight: 600; 
-        }
-        .back-link:hover { 
-            text-decoration: underline; 
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Acuerdo de Nivel de Servicio (SLA) - Cíclope CMS</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        font-size: 11pt;
+        line-height: 1.25;
+        color: #2d3748;
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 0 20px;
+        background-color: #ffffff;
+    }
+    .header-container {
+        border-bottom: 2px solid #1a365d;
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+    }
+    h1 {
+        font-size: 22pt;
+        color: #1a365d;
+        margin: 0 0 6px 0;
+        font-weight: bold;
+    }
+    .meta-date {
+        font-size: 10pt;
+        color: #718096;
+        font-style: italic;
+    }
+    p {
+        margin: 0 0 14px 0;
+        text-align: justify;
+    }
+    h2 {
+        font-size: 14pt;
+        color: #2b6cb0;
+        margin: 24px 0 12px 0;
+        border-left: 4px solid #2b6cb0;
+        padding-left: 10px;
+    }
+    h3 {
+        font-size: 11.5pt;
+        color: #2d3748;
+        margin: 16px 0 8px 0;
+        font-weight: bold;
+    }
+    .formula-box {
+        background-color: #f7fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        color: #1a365d;
+        font-size: 12pt;
+    }
+    ul, ol {
+        margin: 0 0 14px 0;
+        padding-left: 24px;
+    }
+    li {
+        margin-bottom: 8px;
+        text-align: justify;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    th {
+        background-color: #1a365d;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 10pt;
+        text-align: left;
+        padding: 10px 12px;
+        border: 1px solid #1a365d;
+    }
+    td {
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        font-size: 10pt;
+        vertical-align: top;
+    }
+    tr:nth-child(even) td {
+        background-color: #f7fafc;
+    }
+    .navigation-link {
+        margin-top: 30px;
+        display: inline-block;
+    }
+    .navigation-link a {
+        color: #2b6cb0;
+        text-decoration: none;
+        font-size: 10pt;
+    }
+    .navigation-link a:hover {
+        text-decoration: underline;
+    }
+    .footer-brand {
+        margin-top: 50px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 12px;
+        font-size: 8.5pt;
+        color: #a0aec0;
+        text-align: left;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Acuerdo de Nivel de Servicio (SLA)</h1>
-        <p><strong>Última actualización:</strong> Junio 2026</p>
-        <p>Este Acuerdo de Nivel de Servicio ("SLA") define los compromisos de disponibilidad técnica de la infraestructura, redundancia de datos y tiempos de respuesta de soporte técnico provistos por <strong>Cíclope CMS</strong> a sus usuarios y clientes corporativos con planes vigentes.</p>
 
-        <h2>1. Compromiso de Disponibilidad (Uptime)</h2>
-        <p>Cíclope CMS garantiza que los entornos lógicos en la nube y los endpoints de publicación o incrustación mantendrán un porcentaje de disponibilidad operativa mensual de, al menos, el <strong>99.9%</strong>. Este compromiso se calcula las 24 horas del día, los 7 días de la semana, excluyendo únicamente las ventanas de mantenimiento técnico programado.</p>
+<div class="header-container">
+    <h1>Acuerdo de Nivel de Servicio (SLA)</h1>
+    <div class="meta-date">Última actualización: Julio 2026</div>
+</div>
 
-        <h2>2. Ventanas de Mantenimiento</h2>
-        <p>Las tareas de optimización de infraestructura, parches críticos de seguridad en bases de datos o despliegue de mejoras estructurales que requieran pausas breves del entorno se realizarán en horarios de baja densidad transaccional (típicamente entre las 02:00 y las 05:00 UTC). Dichas intervenciones serán notificadas al correo del administrador de la cuenta institucional con un mínimo de cuarenta y ocho (48) horas de anticipación.</p>
+<p>Este Acuerdo de Nivel de Servicio ("SLA") regula los compromisos de disponibilidad técnica de la infraestructura, redundancia de datos y tiempos de respuesta de soporte técnico provistos por <strong>Cíclope CMS</strong> (en adelante, "El Proveedor") a sus usuarios y clientes corporativos con planes de pago vigentes (en adelante, "El Cliente"). Este SLA es un anexo vinculante a los Términos y Condiciones de Servicio principales.</p>
 
-        <h2>3. Matriz de Severidad e Incidentes de Soporte</h2>
-        <p>Los tiempos máximos para la primera respuesta técnica se estructuran rigurosamente de acuerdo al nivel de afectación real sobre la operación documental:</p>
+<h2>1. Compromiso de Disponibilidad (Uptime) y Exclusiones</h2>
+<p>El Proveedor realizará esfuerzos comercialmente razonables para garantizar que los entornos lógicos en la nube y los endpoints de publicación o incrustación mantendrán un porcentaje de disponibilidad operativa mensual de, al menos, el <strong>99.5%</strong>.</p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Severidad de Incidencia</th>
-                    <th>Definición Operativa</th>
-                    <th>Tiempo de Respuesta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Severidad 1 (Crítica)</strong></td>
-                    <td>La plataforma se encuentra completamente inaccesible o las funciones de validación SHA-256 bloquean el guardado.</td>
-                    <td>Menos de 2 Horas</td>
-                </tr>
-                <tr>
-                    <td><strong>Severidad 2 (Alta)</strong></td>
-                    <td>Mal funcionamiento de los motores de indexación Elasticsearch o del Importador Inteligente, pero el panel operativo sigue accesible.</td>
-                    <td>Menos de 6 Horas</td>
-                </tr>
-                <tr>
-                    <td><strong>Severidad 3 (Normal)</strong></td>
-                    <td>Consultas estéticas, ajustes menores en ventanas CSS, o asistencia sobre flujos de usuarios estándar.</td>
-                    <td>Menos de 24 Horas hábiles</td>
-                </tr>
-            </tbody>
-        </table>
+<p>El cálculo del Uptime Mensual se realizará mediante la siguiente fórmula:</p>
+<div class="formula-box">
+    Uptime % = [(Minutos Totales del Mes - Minutos de Inactividad Calificada) / Minutos Totales del Mes] x 100
+</div>
 
-        <h2>4. Respaldos (Backups) y Continuidad Operativa</h2>
-        <p>El sistema efectúa copias de seguridad completas y automatizadas de las bases de datos y de las estructuras modulares cada veinticuatro (24) horas, con retención cifrada distribuida en tres zonas geográficas distintas. Ante un evento catastrófico global, el tiempo objetivo de recuperación del servicio (RTO) se fija en un máximo de cuatro (4) horas.</p>
+<h3>1.1 Exclusiones del Compromiso de Disponibilidad</h3>
+<p>No se considerará "Inactividad Calificada" (y por lo tanto se excluirá por completo del cómputo de Uptime) cualquier interrupción que derive de:</p>
+<ul>
+    <li>Ventanas de mantenimiento técnico programado o de emergencia (según se definen en la Cláusula 2).</li>
+    <li>Fallos, interrupciones, latencia o degradación del servicio causados por proveedores de infraestructura en la nube de terceros o redes de distribución de contenido (CDN).</li>
+    <li>Actos, omisiones, negligencia o mal uso de la plataforma por parte del Cliente, sus empleados, contratistas o usuarios finales (incluyendo configuraciones erróneas de APIs o credenciales de acceso).</li>
+    <li>Problemas de conectividad locales del Cliente, fallos en los proveedores de servicios de internet (ISP) del Cliente o incidencias en los equipos y navegadores locales.</li>
+    <li>Ataques de denegación de servicio (DDoS), hackeos, intromisiones externas o incidentes de ciberseguridad, siempre que El Proveedor haya implementado medidas estándar de seguridad de la industria.</li>
+    <li>Eventos de Fuerza Mayor o Caso Fortuito (desastres naturales, huelgas, disturbios, actos de gobierno, restricciones sanitarias o fallos generales de la red global de telecomunicaciones).</li>
+</ul>
 
-        <a href="index.html" class="back-link">← Volver al Portal Principal</a>
-    </div>
+<h2>2. Ventanas de Mantenimiento</h2>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acuerdo de Nivel de Servicio (SLA) - Cíclope CMS</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            line-height: 1.6; 
-            color: #4a5450; 
-            background-color: #f0f7f5; 
-            padding: 40px 20px; 
-            margin: 0;
-        }
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            background: #ffffff; 
-            padding: 40px; 
-            border-radius: 12px; 
-            border: 1px solid #cfe2dd; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
-        }
-        h1 { 
-            color: #111827; 
-            font-size: 28px; 
-            margin-bottom: 20px; 
-            border-bottom: 2px solid #2bb696; 
-            padding-bottom: 10px; 
-        }
-        h2 { 
-            color: #061815; 
-            font-size: 20px; 
-            margin-top: 30px; 
-            margin-bottom: 15px; 
-        }
-        p, li { 
-            font-size: 15px; 
-            margin-bottom: 15px; 
-            text-align: justify; 
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin: 20px 0; 
-            font-size: 14.5px; 
-        }
-        th, td { 
-            border: 1px solid #cfe2dd; 
-            padding: 12px; 
-            text-align: left; 
-        }
-        th { 
-            background-color: #f0f7f5; 
-            color: #061815; 
-            font-weight: 700; 
-        }
-        .back-link { 
-            display: inline-block; 
-            margin-top: 30px; 
-            color: #2bb696; 
-            text-decoration: none; 
-            font-weight: 600; 
-        }
-        .back-link:hover { 
-            text-decoration: underline; 
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Acuerdo de Nivel de Servicio (SLA)</h1>
-        <p><strong>Última actualización:</strong> Junio 2026</p>
-        <p>Este Acuerdo de Nivel de Servicio ("SLA") define los compromisos de disponibilidad técnica de la infraestructura, redundancia de datos y tiempos de respuesta de soporte técnico provistos por <strong>Cíclope CMS</strong> a sus usuarios y clientes corporativos con planes vigentes.</p>
+<h3>2.1 Mantenimiento Programado</h3>
+<p>Las tareas de optimización de infraestructura, parches de seguridad en bases de datos o despliegue de mejoras estructurales que requieran pausas breves o degradación temporal del entorno se realizarán en horarios de baja densidad transaccional (típicamente entre las 02:00 y las 05:00 UTC). Dichas intervenciones serán notificadas al correo del administrador de la cuenta institucional con un mínimo de veinticuatro (24) horas de anticipación.</p>
 
-        <h2>1. Compromiso de Disponibilidad (Uptime)</h2>
-        <p>Cíclope CMS garantiza que los entornos lógicos en la nube y los endpoints de publicación o incrustación mantendrán un porcentaje de disponibilidad operativa mensual de, al menos, el <strong>99.9%</strong>. Este compromiso se calcula las 24 horas del día, los 7 días de la semana, excluyendo únicamente las ventanas de mantenimiento técnico programado.</p>
+<h3>2.2 Mantenimiento de Emergencia</h3>
+<p>En caso de que se detecte una vulnerabilidad crítica de seguridad, riesgo inminente de pérdida de datos o inestabilidad grave del sistema, El Proveedor se reserva el derecho de ejecutar Ventanas de Mantenimiento de Emergencia en cualquier momento y sin previo aviso. Estas ventanas se considerarán tiempo de disponibilidad exceptuado y no computarán como inactividad.</p>
 
-        <h2>2. Ventanas de Mantenimiento</h2>
-        <p>Las tareas de optimización de infraestructura, parches críticos de seguridad en bases de datos o despliegue de mejoras estructurales que requieran pausas breves del entorno se realizarán en horarios de baja densidad transaccional (típicamente entre las 02:00 y las 05:00 UTC). Dichas intervenciones serán notificadas al correo del administrador de la cuenta institucional con un mínimo de cuarenta y ocho (48) horas de anticipación.</p>
+<h2>3. Matriz de Severidad e Incidentes de Soporte</h2>
+<p>Los tiempos estipulados en esta matriz se refieren exclusivamente al <strong>Tiempo de Primera Respuesta</strong> (acuse de recibo calificado y asignación a un ingeniero técnico) y no constituyen un compromiso o garantía de tiempo de resolución definitiva, el cual dependerá de la complejidad y diagnóstico del hallazgo.</p>
+<p>El soporte se brindará a través de los canales oficiales habilitados en la plataforma.</p>
 
-        <h2>3. Matriz de Severidad e Incidentes de Soporte</h2>
-        <p>Los tiempos máximos para la primera respuesta técnica se estructuran rigurosamente de acuerdo al nivel de afectación real sobre la operación documental:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Severidad de Incidencia</th>
+            <th>Definición Operativa</th>
+            <th>Horario de Cobertura</th>
+            <th>Tiempo Máximo de Primera Respuesta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Severidad 1 (Crítica)</strong></td>
+            <td>La plataforma se encuentra completamente inaccesible a nivel global o las funciones de validación SHA-256 bloquean de forma absoluta el guardado de documentos sin alternativa técnica.</td>
+            <td>24/7/365</td>
+            <td>Menos de 4 Horas</td>
+        </tr>
+        <tr>
+            <td><strong>Severidad 2 (Alta)</strong></td>
+            <td>Mal funcionamiento de los motores de indexación Elasticsearch o del Importador Inteligente, pero el panel operativo principal sigue accesible y permite flujos de trabajo alternos.</td>
+            <td>Lunes a Viernes<br>(09:00 - 18:00 UTC)</td>
+            <td>Menos de 12 Horas hábiles</td>
+        </tr>
+        <tr>
+            <td><strong>Severidad 3 (Normal)</strong></td>
+            <td>Consultas estéticas, ajustes menores en ventanas CSS, asistencia sobre flujos de usuarios estándar, o solicitudes de mejoras de funciones.</td>
+            <td>Lunes a Viernes<br>(09:00 - 18:00 UTC)</td>
+            <td>Menos de 48 Horas hábiles</td>
+        </tr>
+    </tbody>
+</table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Severidad de Incidencia</th>
-                    <th>Definición Operativa</th>
-                    <th>Tiempo de Respuesta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Severidad 1 (Crítica)</strong></td>
-                    <td>La plataforma se encuentra completamente inaccesible o las funciones de validación SHA-256 bloquean el guardado.</td>
-                    <td>Menos de 2 Horas</td>
-                </tr>
-                <tr>
-                    <td><strong>Severidad 2 (Alta)</strong></td>
-                    <td>Mal funcionamiento de los motores de indexación Elasticsearch o del Importador Inteligente, pero el panel operativo sigue accesible.</td>
-                    <td>Menos de 6 Horas</td>
-                </tr>
-                <tr>
-                    <td><strong>Severidad 3 (Normal)</strong></td>
-                    <td>Consultas estéticas, ajustes menores en ventanas CSS, o asistencia sobre flujos de usuarios estándar.</td>
-                    <td>Menos de 24 Horas hábiles</td>
-                </tr>
-            </tbody>
-        </table>
+<h3>3.1 Obligación de Cooperación del Cliente</h3>
+<p>El Cliente debe reportar la incidencia con los detalles técnicos suficientes para su diagnóstico (capturas de pantalla, logs de error, pasos de reproducción). El cómputo del tiempo de respuesta se suspenderá si El Proveedor requiere información adicional del Cliente y este no la provee de manera inmediata.</p>
 
-        <h2>4. Respaldos (Backups) y Continuidad Operativa</h2>
-        <p>El sistema efectúa copias de seguridad completas y automatizadas de las bases de datos y de las estructuras modulares cada veinticuatro (24) horas, con retención cifrada distribuida en tres zonas geográficas distintas. Ante un evento catastrófico global, el tiempo objetivo de recuperación del servicio (RTO) se fija en un máximo de cuatro (4) horas.</p>
+<h2>4. Respaldos (Backups) y Continuidad Operativa</h2>
+<p>El sistema efectúa copias de seguridad automatizadas de las bases de datos y de las estructuras modulares cada veinticuatro (24) horas, con retención cifrada distribuida en tres zonas geográficas distintas.</p>
+<p>Ante un evento catastrófico global comprobado que afecte directamente al centro de datos principal del Proveedor, el Tiempo Objetivo de Recuperación del Servicio (RTO) se fija en un máximo de doce (12) horas. El RTO constituye una métrica de esfuerzo objetivo y no genera derecho a indemnizaciones, penalizaciones ni resoluciones contractuales en caso de retraso por complicaciones técnicas imprevistas.</p>
 
-        <a href="index.html" class="back-link">← Volver al Portal Principal</a>
-    </div>
+<h2>5. Créditos de Servicio (Único Recurso Exclusivo)</h2>
+<p>En caso de que El Proveedor incumpla el compromiso de Uptime Mensual establecido en la Cláusula 1 (neto de exclusiones), el Cliente tendrá derecho a solicitar un Crédito de Servicio, el cual se aplicará exclusivamente como un descuento comercial en la factura del mes inmediato posterior.</p>
+<ul>
+    <li><strong>Uptime entre 99.0% y 99.49%:</strong> Crédito equivalente al 5% de la tarifa mensual de la suscripción afectada.</li>
+    <li><strong>Uptime inferior a 99.0%:</strong> Crédito equivalente al 10% de la tarifa mensual de la suscripción afectada.</li>
+</ul>
+
+<h3>5.1 Condiciones de Reclamación y Limitación de Responsabilidad</h3>
+<ol>
+    <li><strong>Procedimiento:</strong> El Cliente deberá solicitar el crédito por escrito dentro de los primeros cinco (5) días hábiles posteriores al cierre del mes en que ocurrió la inactividad, aportando sus propios reportes técnicos de monitoreo. Transcurrido dicho plazo, el derecho al crédito prescribirá.</li>
+    <li><strong>Tope Máximo:</strong> El total acumulado de Créditos de Servicio otorgados en un mes calendario bajo ninguna circunstancia superará el 10% del monto mensual total pagado por el Cliente.</li>
+    <li><strong>Remedio Único y Exclusivo:</strong> La adjudicación de Créditos de Servicio constituye el único y exclusivo remedio a disposición del Cliente, y la máxima responsabilidad económica de El Proveedor por cualquier fallo de disponibilidad, rendimiento o soporte técnico. Queda expresamente excluida cualquier responsabilidad por daños directos, indirectos, lucro cesante, pérdida de datos, daño emergente o pérdidas comerciales indirectas del Cliente.</li>
+</ol>
+
+<div class="navigation-link">
+    <a href="index.html">&larr; Volver al Portal Principal</a>
+</div>
+
+<div class="footer-brand">
+    Powered by DOT
+</div>
+
 </body>
 </html>
