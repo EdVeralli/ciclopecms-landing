@@ -1177,7 +1177,7 @@
         },
         body: JSON.stringify({ nombre, email, password, empresa, mercado, telefono })
     })
-    .then(response => {
+    .then(async response => {
         if (response.ok) {
             // 3. Si el servidor procesó el guardado, mostramos el éxito en pantalla
             const fc = document.getElementById('formContainer');
@@ -1191,13 +1191,40 @@
                 fc.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         } else {
-            alert("El servidor rechazó los datos. Revisa si usuarios.json está en la carpeta Server.");
+            // El backend explica QUÉ pasó y qué hacer —por ejemplo, que ese email
+            // ya tiene cuenta— así que se muestra su mensaje. Antes acá había un
+            // texto de una implementación vieja que hablaba de «usuarios.json» y
+            // de «la carpeta Server», cosas que no existen: un cliente que veía
+            // eso no tenía forma de entender nada, y nosotros tampoco.
+            let detalle = "";
+            try { detalle = (await response.json()).detail || ""; } catch (e) {}
+            mostrarErrorDeRegistro(detalle ||
+                "No pudimos completar el registro. Probá de nuevo en un momento, " +
+                "o escribinos a contacto@ciclopecms.com");
         }
     })
     .catch(err => {
         console.error("Error de comunicación:", err);
-        alert("Error de conexión. Asegúrate de actualizar la página con Ctrl + F5.");
+        mostrarErrorDeRegistro("No pudimos comunicarnos con el servidor. " +
+            "Revisá tu conexión y probá de nuevo.");
     });
+}
+
+// Muestra el problema DENTRO del formulario, no en un alert: el alert se cierra
+// y no deja rastro, y encima tapa los datos que la persona acaba de escribir.
+function mostrarErrorDeRegistro(texto) {
+    const fc = document.getElementById('formContainer');
+    if (!fc) { alert(texto); return; }
+    let caja = document.getElementById('regError');
+    if (!caja) {
+        caja = document.createElement('div');
+        caja.id = 'regError';
+        caja.style.cssText = 'margin:14px 0;padding:12px 14px;border-radius:8px;' +
+            'background:#fff4f4;border:1px solid #f3c9c9;color:#8a2b2b;font-size:.95em';
+        fc.prepend(caja);
+    }
+    caja.textContent = texto;
+    caja.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
     </script>
 </body>
