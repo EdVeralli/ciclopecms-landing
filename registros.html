@@ -211,13 +211,18 @@
 
         const bEstado = document.createElement('button');
         bEstado.textContent = suspendida ? 'Reactivar' : 'Suspender';
-        bEstado.style.cssText = 'margin-right:6px;padding:6px 10px;border-radius:7px;border:1px solid #ccc;background:#fff;';
+        // `ghost` es la clase que la página ya tiene para botones de fondo claro.
+        // La primera versión ponía `background:#fff` por estilo en línea y NO el
+        // color: como la hoja de estilos define `button { color:#fff }`, quedaba
+        // texto blanco sobre blanco. El botón estaba y funcionaba; no se veía.
+        bEstado.className = 'ghost';
+        bEstado.style.cssText = 'margin-right:6px;padding:6px 10px;font-size:13px;';
         bEstado.onclick = () => cambiarEstado(c, suspendida ? 'ACTIVE' : 'SUSPENDED');
         acciones.appendChild(bEstado);
 
         const bPurga = document.createElement('button');
         bPurga.textContent = 'Purgar';
-        bPurga.style.cssText = 'padding:6px 10px;border-radius:7px;border:none;background:#a11;color:#fff;';
+        bPurga.style.cssText = 'padding:6px 10px;font-size:13px;background:#a11;color:#fff;';
         bPurga.onclick = () => abrirPurga(c);
         acciones.appendChild(bPurga);
 
