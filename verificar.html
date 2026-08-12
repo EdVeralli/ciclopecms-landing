@@ -44,24 +44,43 @@
   const titulo = document.getElementById('titulo');
   const msg = document.getElementById('msg');
   const card = document.getElementById('card');
-  function ok(email){
-    icon.textContent = '✅';
-    titulo.textContent = '¡Tu cuenta está activa!';
-    msg.innerHTML = 'Confirmaste <b>' + (email||'') + '</b>. Tu cuenta ya quedó creada — te enviamos un mail con los datos de acceso.';
-    card.insertAdjacentHTML('beforeend', '<a class="btn" href="https://saas.ciclopecms.com/">Ingresar a Cíclope</a>');
+  // El titulo lo decide `cuenta_activa`, NO el hecho de que la llamada haya
+  // salido bien. El email puede quedar verificado y la cuenta no crearse: si
+  // esta pantalla dijera «activa» igual, la persona se iria a intentar entrar
+  // con una cuenta que no existe. El backend ya distingue los tres casos y
+  // manda el texto; aca solo se elige el tono y si se ofrece el boton.
+  function ok(data){
+    const activa = data.cuenta_activa !== false;   // sin el campo, se asume que si
+    const email = data.email || '';
+    if (activa) {
+      icon.textContent = '✅';
+      titulo.textContent = data.ya_estaba_verificado && !data.cuenta_creada
+        ? 'Este email ya estaba confirmado'
+        : '¡Tu cuenta está activa!';
+      msg.innerHTML = 'Confirmaste <b>' + email + '</b>. ' +
+        (data.mensaje || 'Tu cuenta ya quedó creada.');
+      card.insertAdjacentHTML('beforeend', '<a class="btn" href="https://saas.ciclopecms.com/">Ingresar a Cíclope</a>');
+    } else {
+      icon.textContent = '⚠️';
+      titulo.textContent = 'Confirmamos tu email';
+      msg.innerHTML = 'Verificamos <b>' + email + '</b>, pero la cuenta todavía no quedó creada. ' +
+        (data.mensaje || '');
+      card.insertAdjacentHTML('beforeend',
+        '<p class="muted">Guardá este enlace: volver a abrirlo reintenta la creación.</p>');
+    }
   }
   function fail(t){
     icon.textContent = '⚠️';
     titulo.textContent = 'No se pudo verificar';
     msg.textContent = t || 'El enlace es inválido o ya fue utilizado.';
-    card.insertAdjacentHTML('beforeend', '<p class="muted">Si ya verificaste antes, está todo bien.</p>');
+    card.insertAdjacentHTML('beforeend', '<p class="muted">Si ya tenés cuenta, entrá directamente en saas.ciclopecms.com</p>');
   }
   if (!token) { fail('Falta el código de verificación en el enlace.'); }
   else {
     fetch(API + '/v1/public/verificar?token=' + encodeURIComponent(token))
       .then(async r => {
         const data = await r.json().catch(() => ({}));
-        if (r.ok) ok(data.email); else fail(data.detail || 'El enlace es inválido o ya fue utilizado.');
+        if (r.ok) ok(data); else fail(data.detail || 'El enlace es inválido o ya fue utilizado.');
       })
       .catch(() => fail('Error de conexión. Reintentá en un momento.'));
   }
