@@ -21,7 +21,23 @@
     <p id="msg">Un momento, estamos confirmando tu email.</p>
   </div>
 <script>
-  const API = "https://demo.ciclopecms.com/api";
+  // 🔴 RUTA RELATIVA A PROPÓSITO — no poner acá el nombre de un backend.
+  //
+  // Hasta el 12-ago-2026 esto decía "https://demo.ciclopecms.com/api", que es
+  // Cíclope LEGAL, sobre SQL Server. El alta, en cambio, hace POST a /registro
+  // (relativo), que Nginx manda al backend del SaaS, sobre PostgreSQL. O sea
+  // que el registro se guardaba en una base y el token se buscaba en la OTRA:
+  // la fila existía, intacta y sin usar, y la pantalla decía «Token inválido o
+  // ya utilizado» — literalmente cierto para la base donde miró, y por eso
+  // nadie lo detectó. Nadie podía darse de alta en el SaaS.
+  //
+  // Funcionó hasta el 30-jul-2026, cuando había UN backend. La separación en
+  // dos partió el circuito por el medio sin romper nada visible.
+  //
+  // Relativo significa que el destino lo decide UN solo lugar —el
+  // `location /api/` de /etc/nginx/sites-enabled/ciclopecms— y deja de ser
+  // posible que una mitad del circuito se mude sin la otra.
+  const API = "/api";
   const params = new URLSearchParams(location.search);
   const token = params.get('token');
   const icon = document.getElementById('icon');

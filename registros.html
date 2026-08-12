@@ -65,7 +65,11 @@
   </div>
 </div>
 <script>
-  const API = "https://demo.ciclopecms.com/api";
+  // Relativa a propósito: ver la nota larga en verificar.html.
+  // Esta página mostraba «Total de registros: 0» con tres filas en la base,
+  // porque le preguntaba a SQL Server —donde la tabla existe y está vacía—
+  // en vez de a PostgreSQL. Fue lo que destapó el problema del alta.
+  const API = "/api";
   let token = null;
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
