@@ -295,9 +295,26 @@
     }
     const res = await r.json();
     cerrarPurga();
-    // Si Elasticsearch falló, la base quedó limpia pero el buscador no: se
-    // avisa en vez de dar todo por hecho.
-    if (res.aviso) alert(res.aviso);
+
+    // El backend comprueba su propio trabajo: barre todas las tablas buscando
+    // filas con el id de la cuenta borrada, y compara los huérfanos de antes y
+    // después para no achacarle a esta purga la basura que ya estaba. Acá sólo
+    // se muestra el veredicto — antes había que entrar al servidor y escribir
+    // consultas a mano para saber si el botón había hecho bien su trabajo.
+    const v = res.verificacion || {};
+    const caja = document.getElementById('cuentasErr');
+    if (v.limpio) {
+      const total = Object.entries(res.borrado || {})
+        .reduce((a, [, n]) => a + n, 0);
+      caja.style.color = '#0a7';
+      caja.textContent = '✔ «' + res.nombre + '» purgada: ' + total +
+        ' filas borradas y ' + (res.elasticsearch?.documentos_borrados || 0) +
+        ' documentos sacados del buscador. Verificado: no quedó ninguna fila de ' +
+        'esa cuenta ni huérfanos nuevos.';
+    } else {
+      caja.style.color = '#b91c1c';
+      caja.textContent = '⚠ ' + (res.aviso || 'La purga no quedó limpia.');
+    }
     cargarCuentas();
     cargar();
   }
