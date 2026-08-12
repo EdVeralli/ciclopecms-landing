@@ -57,8 +57,13 @@
       titulo.textContent = data.ya_estaba_verificado && !data.cuenta_creada
         ? 'Este email ya estaba confirmado'
         : '¡Tu cuenta está activa!';
-      msg.innerHTML = 'Confirmaste <b>' + email + '</b>. ' +
-        (data.mensaje || 'Tu cuenta ya quedó creada.');
+      // En el camino feliz el texto lo pone la pagina: el `mensaje` del backend
+      // dice lo mismo y quedaba repetido tres veces («Confirmaste X. Email
+      // verificado. Tu cuenta esta activa.»). En el camino con problema SI se
+      // usa el del backend, porque ahi el texto lleva la instruccion.
+      msg.innerHTML = data.ya_estaba_verificado && !data.cuenta_creada
+        ? 'Ya habías confirmado <b>' + email + '</b>. Entrá con tu usuario y contraseña.'
+        : 'Confirmaste <b>' + email + '</b>. Te enviamos un correo con los datos de acceso.';
       card.insertAdjacentHTML('beforeend', '<a class="btn" href="https://saas.ciclopecms.com/">Ingresar a Cíclope</a>');
     } else {
       icon.textContent = '⚠️';
