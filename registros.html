@@ -78,6 +78,13 @@
     </div>
     <div id="cuentasEmpty" class="empty" style="display:none;">Todavía no hay cuentas.</div>
     <div id="cuentasErr" class="err"></div>
+    <!-- El veredicto de la purga vive en su PROPIO elemento. Estuvo un rato en
+         `cuentasErr`, que es lo que `cargarCuentas()` limpia al empezar: el
+         mensaje se pintaba y se borraba en el mismo instante, porque la recarga
+         de la tabla viene justo después. Se veía como si nunca se hubiera
+         mostrado. -->
+    <div id="purgaResultado" style="display:none;margin-top:12px;padding:12px 14px;
+         border-radius:8px;font-size:.95em;line-height:1.45;"></div>
   </div>
 </div>
 
@@ -302,18 +309,24 @@
     // se muestra el veredicto — antes había que entrar al servidor y escribir
     // consultas a mano para saber si el botón había hecho bien su trabajo.
     const v = res.verificacion || {};
-    const caja = document.getElementById('cuentasErr');
+    const caja = document.getElementById('purgaResultado');
+    caja.style.display = 'block';
     if (v.limpio) {
-      const total = Object.entries(res.borrado || {})
-        .reduce((a, [, n]) => a + n, 0);
-      caja.style.color = '#0a7';
-      caja.textContent = '✔ «' + res.nombre + '» purgada: ' + total +
+      const total = Object.values(res.borrado || {}).reduce((a, n) => a + n, 0);
+      caja.style.background = '#f0fbf6';
+      caja.style.border = '1px solid #a9e0c9';
+      caja.style.color = '#0a6b4e';
+      caja.innerHTML = '<b>✔ «' + esc(res.nombre) + '» purgada.</b> ' + total +
         ' filas borradas y ' + (res.elasticsearch?.documentos_borrados || 0) +
-        ' documentos sacados del buscador. Verificado: no quedó ninguna fila de ' +
-        'esa cuenta ni huérfanos nuevos.';
+        ' documentos sacados del buscador.<br>' +
+        '<span style="opacity:.85">Verificado por el servidor: no quedó ninguna fila ' +
+        'con el id de esa cuenta, y esta purga no dejó huérfanos nuevos.</span>';
     } else {
-      caja.style.color = '#b91c1c';
-      caja.textContent = '⚠ ' + (res.aviso || 'La purga no quedó limpia.');
+      caja.style.background = '#fff4f4';
+      caja.style.border = '1px solid #f3c9c9';
+      caja.style.color = '#8a2b2b';
+      caja.innerHTML = '<b>⚠ Purga INCOMPLETA.</b><br>' +
+        esc(res.aviso || 'La purga no quedó limpia.');
     }
     cargarCuentas();
     cargar();
