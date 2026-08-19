@@ -1035,6 +1035,29 @@
                                 </button>
                             </div>
                         </div>
+
+                        <!-- Repetir la clave. No es una formalidad: esta clave se
+                             guarda al registrarse y la cuenta se crea despues, al
+                             abrir el enlace del mail. Si la persona la tipeo mal,
+                             se entera recien al intentar entrar, cuando ya no hay
+                             nada en pantalla que le permita corregirla -- y el
+                             producto no tiene "olvide mi contrasena": blanquearla
+                             se hace desde el servidor. (19-ago-2026.) -->
+                        <div class="login-form-group full-width" style="margin-bottom: 5px;">
+                            <label for="reg-password2">Repetir Clave de Acceso</label>
+                            <div class="password-wrapper">
+                                <input
+                                    type="password"
+                                    id="reg-password2"
+                                    class="login-input"
+                                    placeholder="Escribila de nuevo"
+                                    required
+                                >
+                                <button type="button" class="btn-toggle-password" onclick="togglePasswordVisibility('reg-password2', this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     
                     <button type="submit" id="btnSignupSubmit" class="btn-login" style="margin-top: 15px; background-color: var(--secondary); color: var(--accent-vibrant); border: 1px solid var(--accent-vibrant);">Crear Cuenta Institucional Gratuita</button>
@@ -1161,6 +1184,17 @@
     const nombre = document.getElementById('reg-name').value;
     const email = document.getElementById('reg-email').value;
     const password = document.getElementById('reg-password').value;
+    const password2 = document.getElementById('reg-password2').value;
+
+    // Se compara ACA y no en el servidor a proposito: el backend recibe una
+    // sola clave y no tiene con que comparar. Si esto no estuviera, un error
+    // de tipeo se convierte en una cuenta a la que nadie puede entrar.
+    if (password !== password2) {
+        mostrarErrorDeRegistro("Las dos claves no coinciden. Revisalas y volve a intentar.");
+        document.getElementById('reg-password2').focus();
+        return;
+    }
+
     const empresa = document.getElementById('reg-company').value;
     const mercado = document.getElementById('reg-market').value;
     const prefijo = document.getElementById('reg-prefix').value;
