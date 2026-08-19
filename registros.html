@@ -316,9 +316,14 @@
       caja.style.background = '#f0fbf6';
       caja.style.border = '1px solid #a9e0c9';
       caja.style.color = '#0a6b4e';
-      caja.innerHTML = '<b>✔ «' + esc(res.nombre) + '» purgada.</b> ' + total +
-        ' filas borradas y ' + (res.elasticsearch?.documentos_borrados || 0) +
-        ' documentos sacados del buscador.<br>' +
+      const docsES = res.elasticsearch?.documentos_borrados || 0;
+      // Concatenar el número con un plural fijo salía «1 documentos» justo en
+      // la pantalla donde se acaba de borrar algo que no se puede deshacer.
+      const plural = (n, uno, varios) => n + ' ' + (n === 1 ? uno : varios);
+      caja.innerHTML = '<b>✔ «' + esc(res.nombre) + '» purgada.</b> ' +
+        plural(total, 'fila borrada', 'filas borradas') + ' y ' +
+        plural(docsES, 'documento sacado', 'documentos sacados') +
+        ' del buscador.<br>' +
         '<span style="opacity:.85">Verificado por el servidor: no quedó ninguna fila ' +
         'con el id de esa cuenta, y esta purga no dejó huérfanos nuevos.</span>';
     } else {
