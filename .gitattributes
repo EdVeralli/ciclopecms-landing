@@ -1,0 +1,35 @@
+# Finales de línea — la regla vive ACÁ, no en la configuración de cada máquina
+# ============================================================================
+#
+# POR QUÉ EXISTE
+# --------------
+# El 19-ago-2026, agregar ocho líneas a `terminos.html` produjo un diff de 166
+# líneas: era el único archivo con CRLF, y reescribirlo lo pasó entero a LF.
+# No se perdió nada, pero un diff así **esconde el cambio real** — y esa es la
+# forma en que se cuela un error de verdad sin que nadie lo vea.
+#
+# Es el mismo problema que en el repositorio principal, donde el 11-ago
+# llegaron a aparecer 476 archivos «modificados» que nadie había tocado. Ahí se
+# resolvió con un `.gitattributes` como éste, después de comprobar archivo por
+# archivo que no se perdiera una línea.
+#
+# La conclusión es la de siempre: **una configuración que hay que acordarse de
+# poner en cada máquina no es una garantía.** `core.autocrlf` es del cliente; si
+# alguien clona en otra PC vuelve a pasar. Este archivo viaja con el repo.
+
+# Por omisión: git decide si es texto, y en el repositorio se guarda con LF.
+* text=auto eol=lf
+
+# Binarios: que git no intente normalizar nada adentro. `text=auto` usa una
+# heurística para detectarlos, y una heurística que se equivoca con un PNG lo
+# corrompe sin decir nada. Acá hay logos y los cuatro archivos del favicon.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.webp  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
